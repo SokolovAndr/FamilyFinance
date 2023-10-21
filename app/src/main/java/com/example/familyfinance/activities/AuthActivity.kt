@@ -1,9 +1,11 @@
-package com.example.familyfinance
+package com.example.familyfinance.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import com.example.familyfinance.OnLinkFragment
+import com.example.familyfinance.R
 import com.example.familyfinance.fragments.RegisterFragment
 import com.example.familyfinance.fragments.LoginFragment
 

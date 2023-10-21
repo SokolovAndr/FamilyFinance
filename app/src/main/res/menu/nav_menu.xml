@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"    >
+    <item android:title="Меню" >
+        <menu>
+            <item android:title="Записи" android:id="@+id/item1"></item>
+            <item android:title="Категории" android:id="@+id/item2"></item>
+            <item android:title="Счета" android:id="@+id/item3"></item>
+            <item android:title="Отчеты" android:id="@+id/item4"></item>
+            <item android:title="О нас" android:id="@+id/item5"></item>
+        </menu>
+    </item>
+
+
+</menu>

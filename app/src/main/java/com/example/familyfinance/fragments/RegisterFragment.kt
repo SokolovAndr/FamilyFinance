@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.familyfinance.MainActivity
+import com.example.familyfinance.activities.MainActivity
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
 import com.example.familyfinance.database.MainDb
