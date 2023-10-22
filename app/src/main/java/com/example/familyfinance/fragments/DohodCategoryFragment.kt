@@ -6,15 +6,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.lifecycle.asLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.familyfinance.CategoryAdapter
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
+import com.example.familyfinance.database.MainDb
+import com.example.familyfinance.models.Category
 import com.google.android.material.chip.Chip
 
 class DohodCategoryFragment : Fragment, View.OnClickListener {
 
     private var mListener: OnLinkFragment? = null
+    lateinit var adapter: CategoryAdapter  //перемернная для записи адаптера
 
     constructor() : super(R.layout.fragment_dohod_category) {
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
     }
 
     override fun onCreateView(
@@ -28,13 +42,16 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
         if (view != null)
             CreateInstanseFragment(view)
 
-        return view;
+         return view;
     }
 
     fun CreateInstanseFragment(view: View) {
         //registration click move link
-        view.findViewById<Chip>(R.id.chip1Link).setOnClickListener(this)
-        view.findViewById<Chip>(R.id.chip2Link).setOnClickListener(this)
+        view.findViewById<Chip>(R.id.chipRashod).setOnClickListener(this)
+        view.findViewById<Chip>(R.id.chipDohod).setOnClickListener(this)
+        view.findViewById<Button>(R.id.buttonAddCategory).setOnClickListener(this)
+        view.findViewById<RecyclerView>(R.id.rcviewDohod).setOnClickListener(this)
+
     }
 
     override fun onAttach(context: Context) {
@@ -52,11 +69,14 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
     override fun onClick(p0: View?) {
         if (p0 != null) {
             when(p0.id) {
-                R.id.chip2Link -> {
+                R.id.chipDohod -> {
 
                 }
-                R.id.chip1Link -> {
+                R.id.chipRashod -> {
                     mListener?.onLinkFragment("Rashod")
+                }
+                R.id.buttonAddCategory -> {
+                    mListener?.onLinkFragment("Add")
                 }
                 else -> TODO("Not implementation click")
             }
