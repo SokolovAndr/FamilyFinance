@@ -7,6 +7,7 @@
     android:background="#E6DFDF">
 
     <!-- TODO: Update blank fragment layout -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,30 +37,43 @@
             app:layout_constraintVertical_bias="0.058">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip1Link"
+                android:id="@+id/chipRashod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="РАСХОДЫ" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip2Link"
+                android:id="@+id/chipDohod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ДОХОДЫ" />
 
         </com.google.android.material.chip.ChipGroup>
 
-        <Button
-            android:id="@+id/buttonAddDohodCategory"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcviewDohod"
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="480dp"
-            android:layout_marginRight="100dp"
-            android:layout_marginBottom="10dp"
-            android:text="Добавить категорию доходов" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+
+            android:layout_marginEnd="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_categories">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAddCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Добавить категорию"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

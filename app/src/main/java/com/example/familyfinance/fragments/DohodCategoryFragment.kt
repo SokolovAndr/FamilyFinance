@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
 import com.google.android.material.chip.Chip
@@ -33,8 +34,9 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
 
     fun CreateInstanseFragment(view: View) {
         //registration click move link
-        view.findViewById<Chip>(R.id.chip1Link).setOnClickListener(this)
-        view.findViewById<Chip>(R.id.chip2Link).setOnClickListener(this)
+        view.findViewById<Chip>(R.id.chipRashod).setOnClickListener(this)
+        view.findViewById<Chip>(R.id.chipDohod).setOnClickListener(this)
+        view.findViewById<Button>(R.id.buttonAddCategory).setOnClickListener(this)
     }
 
     override fun onAttach(context: Context) {
@@ -52,11 +54,14 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
     override fun onClick(p0: View?) {
         if (p0 != null) {
             when(p0.id) {
-                R.id.chip2Link -> {
+                R.id.chipDohod -> {
 
                 }
-                R.id.chip1Link -> {
+                R.id.chipRashod -> {
                     mListener?.onLinkFragment("Rashod")
+                }
+                R.id.buttonAddCategory -> {
+                    mListener?.onLinkFragment("Add")
                 }
                 else -> TODO("Not implementation click")
             }
