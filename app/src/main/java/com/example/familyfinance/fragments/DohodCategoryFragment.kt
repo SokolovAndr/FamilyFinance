@@ -1,60 +1,69 @@
 package com.example.familyfinance.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
+import com.google.android.material.chip.Chip
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class DohodCategoryFragment : Fragment, View.OnClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DohodCategoryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class DohodCategoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var mListener: OnLinkFragment? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    constructor() : super(R.layout.fragment_dohod_category) {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dohod_category, container, false)
+        var view: View? = super.onCreateView(inflater, container, savedInstanceState)
+
+        if (view != null)
+            CreateInstanseFragment(view)
+
+        return view;
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DohodCategoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DohodCategoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    fun CreateInstanseFragment(view: View) {
+        //registration click move link
+        view.findViewById<Chip>(R.id.chip1Link).setOnClickListener(this)
+        view.findViewById<Chip>(R.id.chip2Link).setOnClickListener(this)
     }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mListener = if (context is OnLinkFragment) {
+            context as OnLinkFragment
+        } else {
+            throw ClassCastException(
+                context.toString()
+                        + " must implement MyListFragment.OnLinkFragment"
+            )
+        }
+    }
+
+    override fun onClick(p0: View?) {
+        if (p0 != null) {
+            when(p0.id) {
+                R.id.chip2Link -> {
+
+                }
+                R.id.chip1Link -> {
+                    mListener?.onLinkFragment("Rashod")
+                }
+                else -> TODO("Not implementation click")
+            }
+        }else
+        {
+            TODO("View element get null")
+        }
+    }
+
 }
