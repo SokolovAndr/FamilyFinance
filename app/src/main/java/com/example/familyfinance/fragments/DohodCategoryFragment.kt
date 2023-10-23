@@ -19,9 +19,11 @@ import com.google.android.material.chip.Chip
 
 private lateinit var adapter: CategoryAdapter  //перемернная для записи адаптера
 private lateinit var rcview: RecyclerView  //перемернная для работы с rcview
+
 class DohodCategoryFragment : Fragment, View.OnClickListener {
 
     private var mListener: OnLinkFragment? = null
+
     constructor() : super(R.layout.fragment_dohod_category) {
     }
 
@@ -36,7 +38,6 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
             CreateInstanseFragment(view)
         return view;
     }
-
 
     fun CreateInstanseFragment(view: View) {
         //registration click move link
@@ -63,9 +64,11 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
             when (p0.id) {
                 R.id.chipDohod -> {
                 }
+
                 R.id.chipRashod -> {
                     mListener?.onLinkFragment("Rashod")
                 }
+
                 R.id.buttonAddCategory -> {
                     mListener?.onLinkFragment("Add")
                 }
@@ -93,7 +96,5 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
                 adapter.addCategory(test)
             }
         }
-
     }
-
 }
