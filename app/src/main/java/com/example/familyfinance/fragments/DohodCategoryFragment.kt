@@ -17,18 +17,12 @@ import com.example.familyfinance.database.MainDb
 import com.example.familyfinance.models.Category
 import com.google.android.material.chip.Chip
 
+private lateinit var adapter: CategoryAdapter  //перемернная для записи адаптера
+private lateinit var rcview: RecyclerView  //перемернная для работы с rcview
 class DohodCategoryFragment : Fragment, View.OnClickListener {
 
     private var mListener: OnLinkFragment? = null
-    lateinit var adapter: CategoryAdapter  //перемернная для записи адаптера
-
     constructor() : super(R.layout.fragment_dohod_category) {
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(
@@ -38,12 +32,11 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         var view: View? = super.onCreateView(inflater, container, savedInstanceState)
-
         if (view != null)
             CreateInstanseFragment(view)
-
-         return view;
+        return view;
     }
+
 
     fun CreateInstanseFragment(view: View) {
         //registration click move link
@@ -51,7 +44,6 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
         view.findViewById<Chip>(R.id.chipDohod).setOnClickListener(this)
         view.findViewById<Button>(R.id.buttonAddCategory).setOnClickListener(this)
         view.findViewById<RecyclerView>(R.id.rcviewDohod).setOnClickListener(this)
-
     }
 
     override fun onAttach(context: Context) {
@@ -68,9 +60,8 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
 
     override fun onClick(p0: View?) {
         if (p0 != null) {
-            when(p0.id) {
+            when (p0.id) {
                 R.id.chipDohod -> {
-
                 }
                 R.id.chipRashod -> {
                     mListener?.onLinkFragment("Rashod")
@@ -80,10 +71,29 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
                 }
                 else -> TODO("Not implementation click")
             }
-        }else
-        {
+        } else {
             TODO("View element get null")
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val layoutManager = LinearLayoutManager(context)
+        rcview = view.findViewById(R.id.rcviewDohod)
+        rcview.layoutManager = layoutManager
+        rcview.setHasFixedSize(true)
+        adapter = CategoryAdapter()
+        rcview.adapter = adapter
+        val db = MainDb.getDb(activity?.applicationContext!!)
+
+        db.getDao().getAllCategoriesDohod(true).asLiveData().observe(requireActivity()) { list ->
+            list.forEach {
+                val test = Category(it.id, it.name, it.direction)
+                adapter.addCategory(test)
+            }
+        }
+
     }
 
 }

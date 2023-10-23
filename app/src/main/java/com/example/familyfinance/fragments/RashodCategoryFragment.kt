@@ -7,10 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.asLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.familyfinance.CategoryAdapter
 
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
+import com.example.familyfinance.database.MainDb
+import com.example.familyfinance.models.Category
 import com.google.android.material.chip.Chip
+
+private lateinit var adapter: CategoryAdapter  //перемернная для записи адаптера
+private lateinit var rcview: RecyclerView  //перемернная для работы с rcview
 
 class RashodCategoryFragment : Fragment, View.OnClickListener {
 
@@ -70,6 +79,26 @@ class RashodCategoryFragment : Fragment, View.OnClickListener {
         {
             TODO("View element get null")
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val layoutManager = LinearLayoutManager(context)
+        rcview = view.findViewById(R.id.rcviewRashod)
+        rcview.layoutManager = layoutManager
+        rcview.setHasFixedSize(true)
+        adapter = CategoryAdapter()
+        rcview.adapter = adapter
+        val db = MainDb.getDb(activity?.applicationContext!!)
+
+        db.getDao().getAllCategoriesRashod(false).asLiveData().observe(requireActivity()) { list ->
+            list.forEach {
+                val test = Category(it.id, it.name, it.direction)
+                adapter.addCategory(test)
+            }
+        }
+
     }
 
 }
