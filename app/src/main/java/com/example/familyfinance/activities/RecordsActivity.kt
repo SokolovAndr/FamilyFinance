@@ -20,7 +20,6 @@ class RecordsActivity : AppCompatActivity() {
         binding = ActivityRecordsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val db = MainDb.getDb(this)
 
         adapter = CategoryAdapter()

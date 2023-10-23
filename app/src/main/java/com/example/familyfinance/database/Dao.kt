@@ -27,10 +27,7 @@ interface Dao {
     fun getAllCategories(): Flow<List<Category>>
 
     @Query("SELECT * FROM categories WHERE direction = :dir")
-    fun getAllCategoriesRashod(dir: Boolean): Flow<List<Category>>
-
-    @Query("SELECT * FROM categories WHERE direction = :dir")
-    fun getAllCategoriesDohod(dir: Boolean): Flow<List<Category>>
+    fun getAllCategoriesByDir(dir: Boolean): Flow<List<Category>>
 
     @Query("DELETE FROM users WHERE login = :i1 AND password = :i2")
     fun delete(i1: String, i2: String)

@@ -21,17 +21,13 @@ import com.example.familyfinance.models.Category
 class CategoriesActivity : AppCompatActivity(), OnLinkFragment {
 
     lateinit var binding: ActivityCategoriesBinding
-    //lateinit var adapter: CategoryAdapter  //перемернная для записи адаптера
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-            binding = ActivityCategoriesBinding.inflate(layoutInflater)
-            setContentView(binding.root)
-
+        binding = ActivityCategoriesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
     }
-
-
 
     override fun onLinkFragment(link: String?) {
         when (link) {
@@ -52,11 +48,8 @@ class CategoriesActivity : AppCompatActivity(), OnLinkFragment {
             }
 
             else -> {
-                TODO("Not implementation click")}
+                TODO("Not implementation click")
+            }
         }
     }
-
-
-
-
 }

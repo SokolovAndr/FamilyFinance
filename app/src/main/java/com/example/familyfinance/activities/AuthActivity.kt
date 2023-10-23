@@ -16,8 +16,6 @@ class AuthActivity : AppCompatActivity(), OnLinkFragment {
         setContentView(R.layout.activity_auth)
     }
 
-
-
     override fun onLinkFragment(link: String?) {
         when (link) {
 

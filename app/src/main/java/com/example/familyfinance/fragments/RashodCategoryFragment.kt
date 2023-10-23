@@ -92,7 +92,7 @@ class RashodCategoryFragment : Fragment, View.OnClickListener {
         rcview.adapter = adapter
         val db = MainDb.getDb(activity?.applicationContext!!)
 
-        db.getDao().getAllCategoriesRashod(false).asLiveData().observe(requireActivity()) { list ->
+        db.getDao().getAllCategoriesByDir(false).asLiveData().observe(requireActivity()) { list ->
             list.forEach {
                 val test = Category(it.id, it.name, it.direction)
                 adapter.addCategory(test)

@@ -72,6 +72,7 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
                 R.id.buttonAddCategory -> {
                     mListener?.onLinkFragment("Add")
                 }
+
                 else -> TODO("Not implementation click")
             }
         } else {
@@ -90,7 +91,7 @@ class DohodCategoryFragment : Fragment, View.OnClickListener {
         rcview.adapter = adapter
         val db = MainDb.getDb(activity?.applicationContext!!)
 
-        db.getDao().getAllCategoriesDohod(true).asLiveData().observe(requireActivity()) { list ->
+        db.getDao().getAllCategoriesByDir(true).asLiveData().observe(requireActivity()) { list ->
             list.forEach {
                 val test = Category(it.id, it.name, it.direction)
                 adapter.addCategory(test)

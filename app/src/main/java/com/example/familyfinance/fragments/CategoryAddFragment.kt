@@ -23,7 +23,6 @@ class CategoryAddFragment : Fragment, View.OnClickListener {
     private var mListener: OnLinkFragment? = null
 
     constructor() : super(R.layout.fragment_category_add) {
-
     }
 
     override fun onCreateView(
@@ -35,7 +34,6 @@ class CategoryAddFragment : Fragment, View.OnClickListener {
 
         if (view != null)
             CreateInstanseFragment(view)
-
 
         return view;
     }
@@ -84,9 +82,7 @@ class CategoryAddFragment : Fragment, View.OnClickListener {
                                 null,
                                 etNewCat?.text.toString(),
                                 true
-
                             )
-
                             Thread {
                                 db.getDao().insertCategory(category)
                             }.start()
@@ -106,11 +102,9 @@ class CategoryAddFragment : Fragment, View.OnClickListener {
                                 false
 
                             )
-
                             Thread {
                                 db.getDao().insertCategory(category)
                             }.start()
-
 
                             var toast = Toast.makeText(
                                 activity?.applicationContext,
@@ -118,17 +112,13 @@ class CategoryAddFragment : Fragment, View.OnClickListener {
                                 Toast.LENGTH_SHORT
                             )
                             toast.show()
-
                         }
                     }
-
-
-
                 }
+
                 else -> TODO("Not implementation click")
             }
-
-        }else{
+        } else {
             TODO("View element get null")
         }
     }

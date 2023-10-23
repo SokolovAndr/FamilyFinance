@@ -11,9 +11,9 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
 
     val categoryList = ArrayList<Category>()
 
-    class CategoryHolder (item: View) : RecyclerView.ViewHolder(item) {
+    class CategoryHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = ListCategoriesBinding.bind(item)
-        fun bind (category:Category) = with(binding){
+        fun bind(category: Category) = with(binding) {
             TextViewCategory1.text = category.id.toString()
             TextViewCategory2.text = category.name
             TextViewCategory3.text = category.direction.toString()
@@ -22,7 +22,8 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.list_categories, parent, false)
+        var view =
+            LayoutInflater.from(parent.context).inflate(R.layout.list_categories, parent, false)
         return CategoryHolder(view)
     }
 

@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, "О нас", Toast.LENGTH_SHORT).show()
                     }
                 }
-
                 true
             }
             openButton.setOnClickListener {

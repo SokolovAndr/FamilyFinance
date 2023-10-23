@@ -20,7 +20,7 @@ class RegisterFragment : Fragment, View.OnClickListener {
 
     private var mListener: OnLinkFragment? = null
 
-    constructor():super(R.layout.fragment_register)  {
+    constructor() : super(R.layout.fragment_register) {
 
     }
 
@@ -29,16 +29,15 @@ class RegisterFragment : Fragment, View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view:View? = super.onCreateView(inflater, container, savedInstanceState)
+        var view: View? = super.onCreateView(inflater, container, savedInstanceState)
 
-        if(view!=null)
+        if (view != null)
             CreateInstanseFragment(view)
-
 
         return view;
     }
 
-    fun CreateInstanseFragment(view:View) {
+    fun CreateInstanseFragment(view: View) {
         //registration click move link
 
         view.findViewById<Button?>(R.id.RegisterLink).setOnClickListener(this)
@@ -62,50 +61,47 @@ class RegisterFragment : Fragment, View.OnClickListener {
         val db = MainDb.getDb(activity?.applicationContext!!)
 
         if (p0 != null) {
-            when(p0.id) {
+            when (p0.id) {
                 R.id.RegisterLink -> {
 
                     var etL = view?.findViewById<EditText>(R.id.etLogin)
                     var etP = view?.findViewById<EditText>(R.id.etPassword)
 
-                    if(etL?.text?.isEmpty() == true || etP?.text?.isEmpty() == true)
-                    {
-                        var toast = Toast.makeText(activity?.applicationContext, "Заполните все поля", Toast.LENGTH_SHORT)
+                    if (etL?.text?.isEmpty() == true || etP?.text?.isEmpty() == true) {
+                        var toast = Toast.makeText(
+                            activity?.applicationContext,
+                            "Заполните все поля",
+                            Toast.LENGTH_SHORT
+                        )
                         toast.show()
-                    }
-                    else {
+                    } else {
 
-                        val user = User (null,
+                        val user = User(
+                            null,
                             etL?.text.toString(),
                             etP?.text.toString()
 
                         )
 
-                        Thread{
+                        Thread {
                             db.getDao().insertItem(user)
                         }.start()
 
-
-                        val myIntent =  Intent(activity?.applicationContext, MainActivity::class.java).apply{}
+                        val myIntent =
+                            Intent(activity?.applicationContext, MainActivity::class.java).apply {}
                         startActivity(myIntent)
                     }
 
-
                 }
+
                 R.id.LoginLink -> {
                     mListener?.onLinkFragment("Login")
                 }
+
                 else -> TODO("Not implementation click")
             }
-        }else
-        {
+        } else {
             TODO("View element get null")
         }
     }
-
-/*    override fun onResume() {
-        super.onResume()
-        var toast = Toast.makeText(activity?.applicationContext, "С возвращеним", Toast.LENGTH_SHORT)
-        toast.show()
-    }*/
 }
