@@ -10,7 +10,7 @@ import android.widget.Button
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.familyfinance.CategoryAdapter
+import com.example.familyfinance.adapters.CategoryAdapter
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
 import com.example.familyfinance.database.MainDb

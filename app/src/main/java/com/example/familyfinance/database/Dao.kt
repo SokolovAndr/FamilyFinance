@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.familyfinance.models.Account
 import com.example.familyfinance.models.Category
 import com.example.familyfinance.models.User
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +18,9 @@ interface Dao {
     @Insert
     fun insertCategory(category: Category)
 
+    @Insert
+    fun insertAccount(account: Account)
+
     @Query("DELETE FROM users")
     fun deleteAll()
 
@@ -25,6 +29,9 @@ interface Dao {
 
     @Query("SELECT * FROM categories")
     fun getAllCategories(): Flow<List<Category>>
+
+    @Query("SELECT * FROM accounts")
+    fun getAllAccounts(): Flow<List<Account>>
 
     @Query("SELECT * FROM categories WHERE direction = :dir")
     fun getAllCategoriesByDir(dir: Boolean): Flow<List<Category>>

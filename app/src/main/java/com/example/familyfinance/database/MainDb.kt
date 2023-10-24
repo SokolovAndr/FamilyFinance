@@ -4,10 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.familyfinance.models.Account
 import com.example.familyfinance.models.Category
 import com.example.familyfinance.models.User
 
-@Database(entities = arrayOf(User::class, Category::class), version = 2)
+@Database(entities = arrayOf(User::class, Category::class, Account::class), version = 3)
 abstract class MainDb : RoomDatabase() {
     abstract fun getDao(): Dao
 

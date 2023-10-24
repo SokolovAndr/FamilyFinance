@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6DFDF">
+    tools:context=".fragments.AccountShowFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,38 +19,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ФРАГМЕНТ С ДОХОДАМИ"
+            android:text="ФРАГМЕНТ СО СПИСКОМ СЧЕТОВ"
             android:textAlignment="center" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_gravity="center"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.058">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipRashod"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="РАСХОДЫ" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipDohod"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ДОХОДЫ" />
-
-        </com.google.android.material.chip.ChipGroup>
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcviewDohod"
+            android:id="@+id/rcViewAccount"
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -59,19 +31,16 @@
             android:layout_marginEnd="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
-            tools:listitem="@layout/list_categories">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
+            tools:listitem="@layout/list_accounts"/>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonAddCategory"
+        android:id="@+id/buttonAddAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Добавить категорию"
+        android:text="Добавить счет"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

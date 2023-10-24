@@ -1,9 +1,10 @@
-package com.example.familyfinance
+package com.example.familyfinance.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.familyfinance.R
 import com.example.familyfinance.databinding.ListCategoriesBinding
 import com.example.familyfinance.models.Category
 

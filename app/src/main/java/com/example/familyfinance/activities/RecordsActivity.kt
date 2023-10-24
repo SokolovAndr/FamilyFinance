@@ -4,8 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.familyfinance.CategoryAdapter
-import com.example.familyfinance.R
+import com.example.familyfinance.adapters.CategoryAdapter
 import com.example.familyfinance.database.MainDb
 import com.example.familyfinance.databinding.ActivityRecordsBinding
 import com.example.familyfinance.models.Category

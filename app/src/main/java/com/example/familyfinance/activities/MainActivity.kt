@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         val myIntentRecordsActivity = Intent(this, RecordsActivity::class.java).apply{}
         val myIntentCategoriesActivity = Intent(this, CategoriesActivity::class.java).apply{}
+        val myIntentAccountsActivity = Intent(this, AccountsActivity::class.java).apply {  }
 
         setContentView(binding.root)
         binding.apply {
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                         startActivity(myIntentCategoriesActivity)
                     }
                     R.id.item3 -> {
-                        Toast.makeText(applicationContext, "Счета", Toast.LENGTH_SHORT).show()
+                        startActivity(myIntentAccountsActivity)
                     }
                     R.id.item4 -> {
                         Toast.makeText(applicationContext, "Отчеты", Toast.LENGTH_SHORT).show()
