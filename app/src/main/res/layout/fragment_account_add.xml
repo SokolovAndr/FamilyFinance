@@ -12,4 +12,28 @@
         android:text="ФРАГМЕНТ ДЛЯ ДОБАВЛЕНИЯ СЧЕТОВ"
         android:textAlignment="center" />
 
+
+    <EditText
+        android:id="@+id/etNewAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Название"
+        android:inputType="text"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="100dp"/>
+
+
+    <Button
+        android:id="@+id/buttonSaveAccount"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="150dp"
+
+        android:gravity="center"
+        android:text="Сохранить счет" />
+
 </FrameLayout>

@@ -7,11 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.asLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
 import com.example.familyfinance.adapters.AccountAdapter
-import com.google.android.material.chip.Chip
+import com.example.familyfinance.database.MainDb
+import com.example.familyfinance.models.Account
+
 
 
 private lateinit var adapter: AccountAdapter  //перемернная для записи адаптера
@@ -62,6 +66,25 @@ class AccountShowFragment : Fragment, View.OnClickListener{
             }
         } else {
             TODO("View element get null")
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val layoutManager = LinearLayoutManager(context)
+        rcview = view.findViewById(R.id.rcViewAccount)
+        rcview.layoutManager = layoutManager
+        rcview.setHasFixedSize(true)
+        adapter = AccountAdapter()
+        rcview.adapter = adapter
+        val db = MainDb.getDb(activity?.applicationContext!!)
+
+        db.getDao().getAllAccounts().asLiveData().observe(requireActivity()) { list ->
+            list.forEach {
+                val test = Account(it.id, it.name)
+                adapter.addAccount(test)
+            }
         }
     }
 
