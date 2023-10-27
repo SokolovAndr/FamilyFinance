@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.RawQuery
 import com.example.familyfinance.models.Account
 import com.example.familyfinance.models.Category
 import com.example.familyfinance.models.Record
@@ -36,6 +37,9 @@ interface Dao {
     @Query("SELECT * FROM categories")
     fun getAllCategories(): Flow<List<Category>>
 
+    @Query("SELECT name FROM categories ORDER BY id")
+    fun getAllCategoriesNames(): Flow<Array<String>>
+
     @Query("SELECT * FROM categories WHERE direction = :dir")
     fun getAllCategoriesByDir(dir: Boolean): Flow<List<Category>>
 
@@ -55,3 +59,4 @@ interface Dao {
     fun getAllRecords(): Flow<List<Record>>
 
 }
+
