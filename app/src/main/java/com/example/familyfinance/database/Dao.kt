@@ -50,6 +50,9 @@ interface Dao {
     @Query("SELECT * FROM accounts")
     fun getAllAccounts(): Flow<List<Account>>
 
+    @Query("SELECT name FROM accounts ORDER BY id")
+    fun getAllAccountsNames(): Flow<Array<String>>
+
     //RECORDS
 
     @Insert

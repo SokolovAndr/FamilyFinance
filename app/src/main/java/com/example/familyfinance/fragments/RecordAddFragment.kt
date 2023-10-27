@@ -16,9 +16,6 @@ import com.example.familyfinance.database.MainDb
 import com.example.familyfinance.models.Account
 import com.example.familyfinance.models.Category
 
-val types = arrayOf("simple User", "Admin")
-
-
 class RecordAddFragment : Fragment() {
 
 
@@ -29,12 +26,13 @@ class RecordAddFragment : Fragment() {
 
         val db = MainDb.getDb(activity?.applicationContext!!)
         val t = inflater.inflate(R.layout.fragment_record_add, container, false)
-        val spinner = t.findViewById<Spinner>(R.id.spinner1)
+        val spinner1 = t.findViewById<Spinner>(R.id.spinner1)
+        val spinner2 = t.findViewById<Spinner>(R.id.spinner2)
 
         db.getDao().getAllCategoriesNames().asLiveData().observe(requireActivity()) { array ->
             array.forEach {
                 //val text = it.toString()
-                spinner?.adapter = ArrayAdapter(
+                spinner1?.adapter = ArrayAdapter(
                     activity?.applicationContext!!,
                     R.layout.support_simple_spinner_dropdown_item,
                     array
@@ -42,7 +40,18 @@ class RecordAddFragment : Fragment() {
             }
         }
 
-        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        db.getDao().getAllAccountsNames().asLiveData().observe(requireActivity()) { array ->
+            array.forEach {
+                //val text = it.toString()
+                spinner2?.adapter = ArrayAdapter(
+                    activity?.applicationContext!!,
+                    R.layout.support_simple_spinner_dropdown_item,
+                    array
+                ) as SpinnerAdapter
+            }
+        }
+
+        spinner1?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 println("error")
             }
@@ -57,7 +66,23 @@ class RecordAddFragment : Fragment() {
                 Toast.makeText(activity, type, Toast.LENGTH_LONG).show()
                 println(type)
             }
+        }
 
+        spinner2?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                println("error")
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val type = parent?.getItemAtPosition(position).toString()
+                Toast.makeText(activity, type, Toast.LENGTH_LONG).show()
+                println(type)
+            }
         }
         return t
     }
