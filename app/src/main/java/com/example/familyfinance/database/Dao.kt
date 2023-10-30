@@ -56,7 +56,7 @@ interface Dao {
     //RECORDS
 
     @Insert
-    fun insertRecord (record: Record)
+    fun insertRecord(record: Record)
 
     @Query("SELECT * FROM records")
     fun getAllRecords(): Flow<List<Record>>

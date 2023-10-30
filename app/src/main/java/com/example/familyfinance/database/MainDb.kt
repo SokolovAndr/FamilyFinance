@@ -9,7 +9,7 @@ import com.example.familyfinance.models.Category
 import com.example.familyfinance.models.Record
 import com.example.familyfinance.models.User
 
-@Database(entities = arrayOf(User::class, Category::class, Account::class, Record::class), version = 5)
+@Database(entities = arrayOf(User::class, Category::class, Account::class, Record::class), version = 6)
 abstract class MainDb : RoomDatabase() {
     abstract fun getDao(): Dao
 
