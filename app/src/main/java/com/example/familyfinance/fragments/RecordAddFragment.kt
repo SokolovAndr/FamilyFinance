@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.CursorAdapter
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.asLiveData
 import com.example.familyfinance.R
+import com.example.familyfinance.adapters.CustomSpinnerAdapter
 import com.example.familyfinance.database.MainDb
 import com.example.familyfinance.models.Account
 import com.example.familyfinance.models.Category
@@ -21,6 +23,7 @@ import com.example.familyfinance.models.Record
 import java.time.LocalDateTime
 
 class RecordAddFragment : Fragment() {
+
 
 
     override fun onCreateView(
@@ -34,22 +37,17 @@ class RecordAddFragment : Fragment() {
         val spinner2 = t.findViewById<Spinner>(R.id.spinner2)
         val but = t.findViewById<Button>(R.id.buttonSaveRecord)
         val etSum = t.findViewById<TextView>(R.id.etSum)
-        val sum = etSum.text.toString().toLong()
+        val sum = etSum.text.toString()  //его преобразуем в long
         val dateTime = LocalDateTime.now()
 
         //val catId = db.getDao().
         //val accId = db.getDao().
 
-
-        db.getDao().getAllCategoriesNames().asLiveData().observe(requireActivity()) { array ->
-            array.forEach {
-                //val text = it.toString()
-                spinner1?.adapter = ArrayAdapter(
-                    activity?.applicationContext!!,
-                    R.layout.support_simple_spinner_dropdown_item,
-                    array
-                ) as SpinnerAdapter
-            }
+        db.getDao().getAllCategories().asLiveData().observe(requireActivity()) { array ->
+            spinner1?.adapter = CustomSpinnerAdapter(
+                activity?.applicationContext!!,
+                array
+            ) as SpinnerAdapter
         }
 
         db.getDao().getAllAccountsNames().asLiveData().observe(requireActivity()) { array ->

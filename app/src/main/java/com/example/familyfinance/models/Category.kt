@@ -16,5 +16,10 @@ data class Category(
     @ColumnInfo(name = "direction")
     var direction: Boolean,
 )
+{
+    override fun toString(): String {
+        return name
+    }
+}
 
 
