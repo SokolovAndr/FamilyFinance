@@ -8,17 +8,15 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.CursorAdapter
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.asLiveData
 import com.example.familyfinance.R
-import com.example.familyfinance.adapters.CustomSpinnerAdapter
+import com.example.familyfinance.adapters.CustomAccountAdapter
+import com.example.familyfinance.adapters.CustomCategoryAdapter
 import com.example.familyfinance.database.MainDb
-import com.example.familyfinance.models.Account
-import com.example.familyfinance.models.Category
 import com.example.familyfinance.models.Record
 import java.time.LocalDateTime
 
@@ -37,25 +35,23 @@ class RecordAddFragment : Fragment() {
         val spinner2 = t.findViewById<Spinner>(R.id.spinner2)
         val but = t.findViewById<Button>(R.id.buttonSaveRecord)
         val etSum = t.findViewById<TextView>(R.id.etSum)
-        val sum = etSum.text.toString()  //его преобразуем в long
+        //val sum = etSum.text.toString()  //его преобразуем в long
         val dateTime = LocalDateTime.now()
 
         //val catId = db.getDao().
         //val accId = db.getDao().
 
         db.getDao().getAllCategories().asLiveData().observe(requireActivity()) { array ->
-            spinner1?.adapter = CustomSpinnerAdapter(
+            spinner1?.adapter = CustomCategoryAdapter(
                 activity?.applicationContext!!,
                 array
             ) as SpinnerAdapter
         }
 
-        db.getDao().getAllAccountsNames().asLiveData().observe(requireActivity()) { array ->
+        db.getDao().getAllAccounts().asLiveData().observe(requireActivity()) { array ->
             array.forEach {
-                //val text = it.toString()
-                spinner2?.adapter = ArrayAdapter(
+                spinner2?.adapter = CustomAccountAdapter(
                     activity?.applicationContext!!,
-                    R.layout.support_simple_spinner_dropdown_item,
                     array
                 ) as SpinnerAdapter
             }
@@ -72,9 +68,9 @@ class RecordAddFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                val cat = parent?.getItemAtPosition(position).toString()
+                /*val cat = parent?.getItemAtPosition(position).toString()
                 Toast.makeText(activity, cat, Toast.LENGTH_LONG).show()
-                println(cat)
+                println(cat)*/
             }
         }
 
@@ -89,23 +85,37 @@ class RecordAddFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                val acc = parent?.getItemAtPosition(position).toString()
+                /*val acc = parent?.getItemAtPosition(position).toString()
                 Toast.makeText(activity, acc, Toast.LENGTH_LONG).show()
-                println(acc)
+                println(acc)*/
             }
         }
         but.setOnClickListener() {
 
-            /*val record = Record (null, catId, accId, sum, dateTime.toString())
-            Thread {
-                db.getDao().insertRecord(record)
-            }.start()*/
+            try {
+                val record = Record (
+                    null,
+                    1,              //для теста
+                    1,               //для теста
+                    etSum.text.toString().toLong(),
+                    dateTime.toString())
+                Thread {
+                    db.getDao().insertRecord(record)
+                }.start()
 
-            Toast.makeText(
-                activity?.applicationContext,
-                "Запись успешно добавлена",
-                Toast.LENGTH_SHORT
-            ).show()
+                Toast.makeText(
+                    activity?.applicationContext,
+                    "Запись успешно добавлена",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            catch (e: NumberFormatException){
+                Toast.makeText(
+                    activity?.applicationContext,
+                    "Ошибка записи",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
         }
         return t

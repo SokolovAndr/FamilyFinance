@@ -1,17 +1,15 @@
-package com.example.familyfinance.adapters
+package com.example.familyfinance.adapters;
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.familyfinance.R
-import com.example.familyfinance.models.Category
+import com.example.familyfinance.models.Account
 
-class CustomSpinnerAdapter (var context: Context, var categories: List<Category>): BaseAdapter(){
-
+class CustomAccountAdapter (var context: Context, var accounts:List<Account>): BaseAdapter(){
 
     internal var inflter: LayoutInflater
 
@@ -20,11 +18,11 @@ class CustomSpinnerAdapter (var context: Context, var categories: List<Category>
     }
 
     override fun getCount(): Int {
-        return categories.size
+        return accounts.size
     }
 
     override fun getItem(position: Int): Any {
-        return categories[position]
+        return accounts[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -44,12 +42,12 @@ class CustomSpinnerAdapter (var context: Context, var categories: List<Category>
             viewHolder = view.tag as ViewHolder
         }
 
-        viewHolder.textView.text = categories[position].toString()
+        viewHolder.textView.text = accounts[position].toString()
 
         return view
     }
 
-    private class ViewHolder(view: View) {
+    private class ViewHolder(view:View) {
         val textView: TextView = view.findViewById(R.id.textView)
     }
 
