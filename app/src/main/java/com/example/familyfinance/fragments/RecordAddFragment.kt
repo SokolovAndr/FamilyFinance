@@ -11,11 +11,13 @@ import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import com.example.familyfinance.R
 import com.example.familyfinance.adapters.CustomAccountSpinnerAdapter
 import com.example.familyfinance.adapters.CustomCategorySpinnerAdapter
 import com.example.familyfinance.database.MainDb
+import com.example.familyfinance.models.Category
 import com.example.familyfinance.models.Record
 import java.time.LocalDateTime
 
