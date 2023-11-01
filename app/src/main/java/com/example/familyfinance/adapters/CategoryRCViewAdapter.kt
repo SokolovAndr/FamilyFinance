@@ -8,7 +8,7 @@ import com.example.familyfinance.R
 import com.example.familyfinance.databinding.ListCategoriesBinding
 import com.example.familyfinance.models.Category
 
-class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
+class CategoryRCViewAdapter : RecyclerView.Adapter<CategoryRCViewAdapter.CategoryHolder>() {
 
     val categoryList = ArrayList<Category>()
 

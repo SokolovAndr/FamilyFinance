@@ -21,6 +21,12 @@
             android:layout_height="wrap_content"
             android:text="ФРАГМЕНТ СО СПИСКОМ ЗАПИСЕЙ"
             android:textAlignment="center" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcviewRecords"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/list_records"/>
     </LinearLayout>
 
     <Button

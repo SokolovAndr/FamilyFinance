@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.example.familyfinance.R
 import com.example.familyfinance.models.Account
 
-class CustomAccountAdapter (var context: Context, var accounts:List<Account>): BaseAdapter(){
+class CustomAccountSpinnerAdapter (var context: Context, var accounts:List<Account>): BaseAdapter(){
 
     internal var inflter: LayoutInflater
 

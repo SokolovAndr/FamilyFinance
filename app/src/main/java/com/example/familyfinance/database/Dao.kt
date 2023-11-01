@@ -43,6 +43,9 @@ interface Dao {
     @Query("SELECT * FROM categories WHERE direction = :dir")
     fun getAllCategoriesByDir(dir: Boolean): Flow<List<Category>>
 
+    @Query("SELECT id FROM categories WHERE name = :i")
+    fun getCategoryId(i: String): Int
+
     //ACCOUNTS
     @Insert
     fun insertAccount(account: Account)
@@ -52,6 +55,9 @@ interface Dao {
 
     @Query("SELECT name FROM accounts ORDER BY id")
     fun getAllAccountsNames(): Flow<Array<String>>
+
+    @Query("SELECT id FROM accounts WHERE name = :i")
+    fun getAccountId(i: String): Int
 
     //RECORDS
 

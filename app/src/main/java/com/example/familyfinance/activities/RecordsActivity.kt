@@ -4,16 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import androidx.lifecycle.asLiveData
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
-import com.example.familyfinance.adapters.CategoryAdapter
-import com.example.familyfinance.database.MainDb
-import com.example.familyfinance.databinding.ActivityRecordsBinding
-import com.example.familyfinance.fragments.AccountAddFragment
 import com.example.familyfinance.fragments.RecordAddFragment
-import com.example.familyfinance.models.Category
 
 class RecordsActivity : AppCompatActivity(), OnLinkFragment {
 

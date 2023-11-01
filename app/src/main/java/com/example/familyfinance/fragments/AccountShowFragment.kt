@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
-import com.example.familyfinance.adapters.AccountAdapter
+import com.example.familyfinance.adapters.AccountRCViewAdapter
 import com.example.familyfinance.database.MainDb
 import com.example.familyfinance.models.Account
 
 
 
-private lateinit var adapter: AccountAdapter  //перемернная для записи адаптера
+private lateinit var adapter: AccountRCViewAdapter  //перемернная для записи адаптера
 private lateinit var rcview: RecyclerView  //перемернная для работы с rcview
 
 class AccountShowFragment : Fragment, View.OnClickListener{
@@ -76,7 +76,7 @@ class AccountShowFragment : Fragment, View.OnClickListener{
         rcview = view.findViewById(R.id.rcViewAccount)
         rcview.layoutManager = layoutManager
         rcview.setHasFixedSize(true)
-        adapter = AccountAdapter()
+        adapter = AccountRCViewAdapter()
         rcview.adapter = adapter
         val db = MainDb.getDb(activity?.applicationContext!!)
 
