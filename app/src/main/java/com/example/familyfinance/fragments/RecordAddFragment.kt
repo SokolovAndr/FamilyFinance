@@ -12,16 +12,17 @@ import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import com.example.familyfinance.R
 import com.example.familyfinance.adapters.CustomAccountAdapter
 import com.example.familyfinance.adapters.CustomCategoryAdapter
 import com.example.familyfinance.database.MainDb
+import com.example.familyfinance.models.Category
 import com.example.familyfinance.models.Record
 import java.time.LocalDateTime
 
 class RecordAddFragment : Fragment() {
-
 
 
     override fun onCreateView(
@@ -37,9 +38,6 @@ class RecordAddFragment : Fragment() {
         val etSum = t.findViewById<TextView>(R.id.etSum)
         //val sum = etSum.text.toString()  //его преобразуем в long
         val dateTime = LocalDateTime.now()
-
-        //val catId = db.getDao().
-        //val accId = db.getDao().
 
         db.getDao().getAllCategories().asLiveData().observe(requireActivity()) { array ->
             spinner1?.adapter = CustomCategoryAdapter(
@@ -74,6 +72,8 @@ class RecordAddFragment : Fragment() {
             }
         }
 
+
+
         spinner2?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 println("error")
@@ -90,17 +90,25 @@ class RecordAddFragment : Fragment() {
                 println(acc)*/
             }
         }
+
         but.setOnClickListener() {
 
             try {
-                val record = Record (
-                    null,
-                    1,              //для теста
-                    1,               //для теста
-                    etSum.text.toString().toLong(),
-                    dateTime.toString())
                 Thread {
+                    val value1 = spinner1.selectedItem.toString()
+                    val value2 = spinner2.selectedItem.toString()
+                    val catId = db.getDao().getCategoryId(value1)
+                    val accId = db.getDao().getAccountId(value2)
+
+                    val record = Record(
+                        null,
+                        catId,
+                        accId,
+                        etSum.text.toString().toLong(),
+                        dateTime.toString()
+                    )
                     db.getDao().insertRecord(record)
+
                 }.start()
 
                 Toast.makeText(
@@ -108,15 +116,13 @@ class RecordAddFragment : Fragment() {
                     "Запись успешно добавлена",
                     Toast.LENGTH_SHORT
                 ).show()
-            }
-            catch (e: NumberFormatException){
+            } catch (e: NumberFormatException) {
                 Toast.makeText(
                     activity?.applicationContext,
                     "Ошибка записи",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
         }
         return t
     }
