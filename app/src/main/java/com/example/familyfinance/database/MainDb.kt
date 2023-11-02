@@ -19,7 +19,7 @@ abstract class MainDb : RoomDatabase() {
                 context.applicationContext,
                 MainDb::class.java,
                 "familyFinance.db"
-            ).build()
+            ).fallbackToDestructiveMigration().build()
         }
     }
 }

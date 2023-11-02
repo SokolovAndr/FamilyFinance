@@ -12,11 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
-import com.example.familyfinance.adapters.AccountRCViewAdapter
 import com.example.familyfinance.adapters.RecordRCViewAdapter
 import com.example.familyfinance.database.MainDb
-import com.example.familyfinance.models.Account
-import com.example.familyfinance.models.Record
+import com.example.familyfinance.models.Test
 
 private lateinit var adapter: RecordRCViewAdapter  //перемернная для записи адаптера
 private lateinit var rcview: RecyclerView  //перемернная для работы с rcview
@@ -79,10 +77,10 @@ class RecordShowFragment : Fragment, View.OnClickListener {
         rcview.adapter = adapter
         val db = MainDb.getDb(activity?.applicationContext!!)
 
-        db.getDao().getAllRecords().asLiveData().observe(requireActivity()) { list ->
+        db.getDao().getMyRecords().asLiveData().observe(requireActivity()) { list ->
             list.forEach {
-                val rec = Record(it.id, it.categoryId, it.accountId, it.sum, it.date)
-                adapter.addRecord(rec)
+                val test = Test(it.id, it.cat, it.acc, it.sum, it.date)
+                adapter.addTest(test)
             }
         }
     }

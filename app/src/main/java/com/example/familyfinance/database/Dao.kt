@@ -3,11 +3,13 @@ package com.example.familyfinance.database
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.MapInfo
 import androidx.room.Query
 import androidx.room.RawQuery
 import com.example.familyfinance.models.Account
 import com.example.familyfinance.models.Category
 import com.example.familyfinance.models.Record
+import com.example.familyfinance.models.Test
 import com.example.familyfinance.models.User
 import kotlinx.coroutines.flow.Flow
 
@@ -66,6 +68,12 @@ interface Dao {
 
     @Query("SELECT * FROM records")
     fun getAllRecords(): Flow<List<Record>>
+
+    @Query("SELECT name FROM records JOIN categories ON records.categoryId = categories.id WHERE categories.name =:i")
+    fun getNameFromCategoryById(i: String): Int
+
+    @Query("SELECT records.id AS id, categories.name AS cat, accounts.name  AS acc, records.sum, records.date  FROM records JOIN categories ON records.categoryId = categories.id JOIN accounts ON records.accountId = accounts.id")
+    fun getMyRecords(): Flow<List<Test>>
 
 }
 
