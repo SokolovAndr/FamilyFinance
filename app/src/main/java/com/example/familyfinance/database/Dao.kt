@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.RawQuery
 import com.example.familyfinance.models.Account
 import com.example.familyfinance.models.Category
+import com.example.familyfinance.models.Ostatok
 import com.example.familyfinance.models.Record
 import com.example.familyfinance.models.Test
 import com.example.familyfinance.models.User
@@ -72,8 +73,21 @@ interface Dao {
     @Query("SELECT name FROM records JOIN categories ON records.categoryId = categories.id WHERE categories.name =:i")
     fun getNameFromCategoryById(i: String): Int
 
-    @Query("SELECT records.id AS id, categories.name AS cat, accounts.name  AS acc, records.sum, records.date  FROM records JOIN categories ON records.categoryId = categories.id JOIN accounts ON records.accountId = accounts.id")
+    @Query("SELECT records.id AS id, categories.name AS cat, accounts.name  AS acc, records.sum, records.date AS date2 FROM records JOIN categories ON records.categoryId = categories.id JOIN accounts ON records.accountId = accounts.id")
     fun getMyRecords(): Flow<List<Test>>
 
+    @Query("select accounts.name AS accName, sum(\n" +
+            "CASE\n" +
+            "WHEN categories.direction = 0  \n" +
+            "        THEN records.sum*-1 \n" +
+            "    WHEN categories.direction = 1  \n" +
+            "        THEN records.sum\n" +
+            "ELSE records.sum\n" +
+            "end\n" +
+            ") AS totalSum\n" +
+            "From accounts JOIN records on accounts.id= records.accountId \n" +
+            "JOIN categories on categories.id = records.categoryId\n" +
+            "group by  accounts.id")
+    fun getOstatki(): Flow<List<Ostatok>>
 }
 

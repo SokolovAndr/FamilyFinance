@@ -15,9 +15,9 @@ class CategoryRCViewAdapter : RecyclerView.Adapter<CategoryRCViewAdapter.Categor
     class CategoryHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = ListCategoriesBinding.bind(item)
         fun bind(category: Category) = with(binding) {
-            TextViewCategory1.text = category.id.toString()
-            TextViewCategory2.text = category.name
-            TextViewCategory3.text = category.direction.toString()
+            TextViewCategory1.text = "№ категории: " + category.id.toString()
+            TextViewCategory2.text = "Наименование: " + category.name
+            TextViewCategory3.text = "Доход: " + category.direction.toString()
 
         }
     }

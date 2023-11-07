@@ -15,8 +15,8 @@ class AccountRCViewAdapter: RecyclerView.Adapter<AccountRCViewAdapter.AccountHol
     class AccountHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = ListAccountsBinding.bind(item)
         fun bind(account: Account) = with(binding) {
-            TextViewAccount1.text = account.id.toString()
-            TextViewAccount2.text = account.name
+            TextViewAccount1.text = "№ счета: " + account.id.toString()
+            TextViewAccount2.text = "Наименование: " + account.name
 
         }
     }

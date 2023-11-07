@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.familyfinance.R
 import com.example.familyfinance.databinding.ListRecordsBinding
 import com.example.familyfinance.models.Test
-
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 
 class RecordRCViewAdapter : RecyclerView.Adapter<RecordRCViewAdapter.TestHolder>() {
 
@@ -20,7 +23,7 @@ class RecordRCViewAdapter : RecyclerView.Adapter<RecordRCViewAdapter.TestHolder>
             TextViewRecord2.text = "Категория: " + test.cat.toString()
             TextViewRecord3.text = "Счет: " + test.acc.toString()
             TextViewRecord4.text = "Сумма: " + test.sum.toString()
-            TextViewRecord5.text = "Дата: " + test.date.toString()
+            TextViewRecord5.text = "Дата: " + test.date2.toString()
         }
     }
 

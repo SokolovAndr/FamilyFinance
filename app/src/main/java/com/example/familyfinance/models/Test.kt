@@ -5,5 +5,5 @@ data class Test(
     var cat: String? = null,
     var acc: String? = null,
     var sum: Long? = null,
-    var date: String?
+    var date2: String?
 )

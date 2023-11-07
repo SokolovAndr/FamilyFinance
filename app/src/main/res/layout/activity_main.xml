@@ -8,11 +8,19 @@
     tools:context=".activities.MainActivity"
     tools:openDrawer="start">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
@@ -22,25 +30,39 @@
             android:text="Family Finance"
             android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/openButton"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcViewOstatok"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:text="Меню">
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            tools:listitem="@layout/list_ostatok">
 
-        </Button>
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+
     </LinearLayout>
 
+        <Button
+            android:id="@+id/openButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Меню"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </Button>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nvMenu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-
-
         android:layout_gravity="start"
-        app:menu="@menu/nav_menu" >
+        app:menu="@menu/nav_menu">
 
     </com.google.android.material.navigation.NavigationView>
 

@@ -5,12 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.asLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.familyfinance.R
+import com.example.familyfinance.adapters.OstatokRCViewAdapter
+import com.example.familyfinance.database.MainDb
 import com.example.familyfinance.databinding.ActivityMainBinding
+import com.example.familyfinance.models.Ostatok
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+    lateinit var adapter: OstatokRCViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,5 +52,18 @@ class MainActivity : AppCompatActivity() {
                 drawer.openDrawer(GravityCompat.START)
             }
         }
+
+        val db = MainDb.getDb(this)
+        adapter = OstatokRCViewAdapter()
+        binding.rcViewOstatok.layoutManager = LinearLayoutManager(this@MainActivity)
+        binding.rcViewOstatok.adapter = adapter
+
+        db.getDao().getOstatki().asLiveData().observe(this@MainActivity) {list ->
+            list.forEach{
+                val ostatok = Ostatok(it.accName, it.totalSum)
+                adapter.addOstatok(ostatok)
+            }
+        }
+
     }
 }
