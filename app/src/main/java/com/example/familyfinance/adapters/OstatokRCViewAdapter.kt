@@ -43,4 +43,9 @@ class OstatokRCViewAdapter: RecyclerView.Adapter<OstatokRCViewAdapter.OstatokHol
         notifyDataSetChanged()
     }
 
+    fun clear(){
+        ostatokList.clear()
+        notifyDataSetChanged()
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.familyfinance.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
 import com.example.familyfinance.adapters.CustomAccountSpinnerAdapter
 import com.example.familyfinance.adapters.CustomCategorySpinnerAdapter
@@ -21,8 +23,12 @@ import com.example.familyfinance.models.Category
 import com.example.familyfinance.models.Record
 import java.time.LocalDateTime
 
-class RecordAddFragment : Fragment() {
+class RecordAddFragment : Fragment, View.OnClickListener {
 
+    private var mListener: OnLinkFragment? = null
+
+    constructor() : super(R.layout.fragment_record_add) {
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -115,6 +121,7 @@ class RecordAddFragment : Fragment() {
                     "Запись успешно добавлена",
                     Toast.LENGTH_SHORT
                 ).show()
+                mListener?.onLinkFragment("Back3")
             } catch (e: NumberFormatException) {
                 Toast.makeText(
                     activity?.applicationContext,
@@ -125,4 +132,35 @@ class RecordAddFragment : Fragment() {
         }
         return t
     }
+
+    fun CreateInstanseFragment(view: View) {
+        view.findViewById<Button>(R.id.buttonSaveRecord).setOnClickListener(this)
+
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mListener = if (context is OnLinkFragment) {
+            context as OnLinkFragment
+        } else {
+            throw ClassCastException(
+                context.toString()
+                        + " must implement MyListFragment.OnLinkFragment"
+            )
+        }
+    }
+
+    override fun onClick(p0: View?) {
+        if (p0 != null) {
+            when (p0.id) {
+                R.id.buttonAddRecord -> {
+                    //mListener?.onLinkFragment("Back3")
+                }
+                else -> TODO("Not implementation click")
+            }
+        } else {
+            TODO("View element get null")
+        }
+    }
+
 }

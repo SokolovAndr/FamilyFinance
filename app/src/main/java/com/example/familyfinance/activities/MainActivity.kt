@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         binding.rcViewOstatok.adapter = adapter
 
         db.getDao().getOstatki().asLiveData().observe(this@MainActivity) {list ->
+            adapter.clear()
             list.forEach{
                 val ostatok = Ostatok(it.accName, it.totalSum)
                 adapter.addOstatok(ostatok)
