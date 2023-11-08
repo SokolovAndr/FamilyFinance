@@ -114,6 +114,7 @@ class CategoryAddFragment : Fragment, View.OnClickListener {
                             toast.show()
                         }
                     }
+                    mListener?.onLinkFragment("Back2")
                 }
 
                 else -> TODO("Not implementation click")

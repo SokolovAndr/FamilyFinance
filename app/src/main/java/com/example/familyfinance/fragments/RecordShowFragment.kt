@@ -68,7 +68,6 @@ class RecordShowFragment : Fragment, View.OnClickListener {
             TODO("View element get null")
         }
     }
-    val formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

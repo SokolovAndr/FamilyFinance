@@ -7,6 +7,7 @@ import androidx.fragment.app.replace
 import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
 import com.example.familyfinance.fragments.RecordAddFragment
+import com.example.familyfinance.fragments.RecordShowFragment
 
 class RecordsActivity : AppCompatActivity(), OnLinkFragment {
 
@@ -22,6 +23,11 @@ class RecordsActivity : AppCompatActivity(), OnLinkFragment {
 
             "Record" -> supportFragmentManager.commit {
                 replace<RecordAddFragment>(R.id.Record_view_fragment)
+                setReorderingAllowed(true)
+            }
+
+            "Back3" -> supportFragmentManager.commit {
+                replace<RecordShowFragment>(R.id.Record_view_fragment)
                 setReorderingAllowed(true)
             }
 

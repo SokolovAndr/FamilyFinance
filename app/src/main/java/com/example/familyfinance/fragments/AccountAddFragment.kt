@@ -84,6 +84,7 @@ class AccountAddFragment : Fragment, View.OnClickListener {
                             )
                             toast.show()
                     }
+                    mListener?.onLinkFragment("Back")
                 }
                 else -> TODO("Not implementation click")
             }

@@ -39,6 +39,11 @@ class CategoriesActivity : AppCompatActivity(), OnLinkFragment {
                 replace<CategoryAddFragment>(R.id.Category_view_fragment)
                 setReorderingAllowed(true)
             }
+            "Back2" -> supportFragmentManager.commit {
+                replace<RashodCategoryFragment>(R.id.Category_view_fragment)
+                setReorderingAllowed(true)
+            }
+
 
             else -> {
                 TODO("Not implementation click")
