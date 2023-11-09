@@ -47,7 +47,7 @@ class RashodCategoryFragment : Fragment, View.OnClickListener {
         view.findViewById<Chip>(R.id.chipRashod).setOnClickListener(this)
         view.findViewById<Chip>(R.id.chipDohod).setOnClickListener(this)
         view.findViewById<Button>(R.id.buttonAddCategory).setOnClickListener(this)
-        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -63,7 +63,7 @@ class RashodCategoryFragment : Fragment, View.OnClickListener {
 
     override fun onClick(p0: View?) {
         if (p0 != null) {
-            when(p0.id) {
+            when (p0.id) {
                 R.id.chipRashod -> {
 
                 }
@@ -75,8 +75,7 @@ class RashodCategoryFragment : Fragment, View.OnClickListener {
                 }
                 else -> TODO("Not implementation click")
             }
-        }else
-        {
+        } else {
             TODO("View element get null")
         }
     }

@@ -80,7 +80,8 @@ class LoginFragment : Fragment, View.OnClickListener {
                         toast.show()
                     } else {
 
-                        var user: LiveData<List<User>>? = db.getDao().isExists(etL?.text.toString(), etP?.text.toString())
+                        var user: LiveData<List<User>>? =
+                            db.getDao().isExists(etL?.text.toString(), etP?.text.toString())
 
                         user?.observe(this) { list ->
                             ListCallBack(list)

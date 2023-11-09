@@ -1,6 +1,6 @@
 package com.example.familyfinance.models
 
-data class Test(
+data class Recordnew(
     var id: Int? = null,
     var cat: String? = null,
     var acc: String? = null,

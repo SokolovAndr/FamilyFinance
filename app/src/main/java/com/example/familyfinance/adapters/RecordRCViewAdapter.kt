@@ -6,47 +6,42 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.familyfinance.R
 import com.example.familyfinance.databinding.ListRecordsBinding
-import com.example.familyfinance.models.Test
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.OffsetDateTime
-import java.time.format.DateTimeFormatter
+import com.example.familyfinance.models.Recordnew
 
-class RecordRCViewAdapter : RecyclerView.Adapter<RecordRCViewAdapter.TestHolder>() {
+class RecordRCViewAdapter : RecyclerView.Adapter<RecordRCViewAdapter.RecordnewHolder>() {
 
-    val testList = ArrayList<Test>()
+    val recordnewList = ArrayList<Recordnew>()
 
-    class TestHolder(item: View) : RecyclerView.ViewHolder(item) {
+    class RecordnewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = ListRecordsBinding.bind(item)
-        fun bind(test: Test) = with(binding) {
-            TextViewRecord1.text = "№ записи: " + test.id.toString()
-            TextViewRecord2.text = "Категория: " + test.cat.toString()
-            TextViewRecord3.text = "Счет: " + test.acc.toString()
-            TextViewRecord4.text = "Сумма: " + test.sum.toString()
-            TextViewRecord5.text = "Дата: " + test.date2.toString()
+        fun bind(recordnew: Recordnew) = with(binding) {
+            TextViewRecord1.text = "№ записи: " + recordnew.id.toString()
+            TextViewRecord2.text = "Категория: " + recordnew.cat.toString()
+            TextViewRecord3.text = "Счет: " + recordnew.acc.toString()
+            TextViewRecord4.text = "Сумма: " + recordnew.sum.toString()
+            TextViewRecord5.text = "Дата: " + recordnew.date2.toString()
         }
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecordRCViewAdapter.TestHolder {
+    ): RecordRCViewAdapter.RecordnewHolder {
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.list_records, parent, false)
-        return RecordRCViewAdapter.TestHolder(view)
+        return RecordRCViewAdapter.RecordnewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecordRCViewAdapter.TestHolder, position: Int) {
-        holder.bind(testList[position])
+    override fun onBindViewHolder(holder: RecordRCViewAdapter.RecordnewHolder, position: Int) {
+        holder.bind(recordnewList[position])
     }
 
     override fun getItemCount(): Int {
-        return testList.size
+        return recordnewList.size
     }
 
-    fun addTest(test: Test) {
-        testList.add(test)
+    fun addRecordnew(recordnew: Recordnew) {
+        recordnewList.add(recordnew)
         notifyDataSetChanged()
     }
-
 }

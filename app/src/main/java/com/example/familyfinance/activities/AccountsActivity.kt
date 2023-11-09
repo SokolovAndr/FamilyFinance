@@ -31,7 +31,6 @@ class AccountsActivity : AppCompatActivity(), OnLinkFragment {
                 setReorderingAllowed(true)
             }
 
-
             else -> {
                 TODO("Not implementation click")
             }

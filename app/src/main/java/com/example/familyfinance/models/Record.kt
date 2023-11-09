@@ -10,14 +10,19 @@ import java.sql.Date
 @Entity(
     tableName = "records",
     foreignKeys = arrayOf(
-        ForeignKey (entity = Category::class,
-            parentColumns  = arrayOf("id"),
-            childColumns  = arrayOf("categoryId"),
-            onDelete = ForeignKey.CASCADE),
-        ForeignKey(entity = Account::class,
-            parentColumns  = arrayOf("id"),
-            childColumns  = arrayOf("accountId"),
-            onDelete = ForeignKey.CASCADE))
+        ForeignKey(
+            entity = Category::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("categoryId"),
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Account::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("accountId"),
+            onDelete = ForeignKey.CASCADE
+        )
+    )
 )
 
 data class Record(

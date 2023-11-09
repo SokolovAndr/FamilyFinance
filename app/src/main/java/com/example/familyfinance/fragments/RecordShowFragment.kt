@@ -14,10 +14,7 @@ import com.example.familyfinance.OnLinkFragment
 import com.example.familyfinance.R
 import com.example.familyfinance.adapters.RecordRCViewAdapter
 import com.example.familyfinance.database.MainDb
-import com.example.familyfinance.models.Test
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.example.familyfinance.models.Recordnew
 
 private lateinit var adapter: RecordRCViewAdapter  //перемернная для записи адаптера
 private lateinit var rcview: RecyclerView  //перемернная для работы с rcview
@@ -68,6 +65,7 @@ class RecordShowFragment : Fragment, View.OnClickListener {
             TODO("View element get null")
         }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -81,8 +79,8 @@ class RecordShowFragment : Fragment, View.OnClickListener {
 
         db.getDao().getMyRecords().asLiveData().observe(requireActivity()) { list ->
             list.forEach {
-                val test = Test(it.id, it.cat, it.acc, it.sum, it.date2)
-                adapter.addTest(test)
+                val recordnew = Recordnew(it.id, it.cat, it.acc, it.sum, it.date2)
+                adapter.addRecordnew(recordnew)
             }
         }
     }

@@ -8,7 +8,7 @@ import com.example.familyfinance.R
 import com.example.familyfinance.databinding.ListAccountsBinding
 import com.example.familyfinance.models.Account
 
-class AccountRCViewAdapter: RecyclerView.Adapter<AccountRCViewAdapter.AccountHolder>() {
+class AccountRCViewAdapter : RecyclerView.Adapter<AccountRCViewAdapter.AccountHolder>() {
 
     val accountList = ArrayList<Account>()
 
@@ -17,11 +17,13 @@ class AccountRCViewAdapter: RecyclerView.Adapter<AccountRCViewAdapter.AccountHol
         fun bind(account: Account) = with(binding) {
             TextViewAccount1.text = "№ счета: " + account.id.toString()
             TextViewAccount2.text = "Наименование: " + account.name
-
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountRCViewAdapter.AccountHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): AccountRCViewAdapter.AccountHolder {
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.list_accounts, parent, false)
         return AccountRCViewAdapter.AccountHolder(view)
@@ -39,5 +41,4 @@ class AccountRCViewAdapter: RecyclerView.Adapter<AccountRCViewAdapter.AccountHol
         accountList.add(account)
         notifyDataSetChanged()
     }
-
 }

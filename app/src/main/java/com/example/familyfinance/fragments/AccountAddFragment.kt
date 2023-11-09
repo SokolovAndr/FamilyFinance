@@ -27,30 +27,31 @@ class AccountAddFragment : Fragment, View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
 
-            var view: View? = super.onCreateView(inflater, container, savedInstanceState)
+        var view: View? = super.onCreateView(inflater, container, savedInstanceState)
 
-            if (view != null)
-                CreateInstanseFragment(view)
+        if (view != null)
+            CreateInstanseFragment(view)
 
-            return view;
+        return view;
     }
 
-        fun CreateInstanseFragment(view: View) {
-            //registration click move link
-            view.findViewById<Button?>(R.id.buttonSaveAccount).setOnClickListener(this)
-        }
+    fun CreateInstanseFragment(view: View) {
+        //registration click move link
+        view.findViewById<Button?>(R.id.buttonSaveAccount).setOnClickListener(this)
+    }
 
-        override fun onAttach(context: Context) {
-            super.onAttach(context)
-            mListener = if (context is OnLinkFragment) {
-                context as OnLinkFragment
-            } else {
-                throw ClassCastException(
-                    context.toString()
-                            + " must implement MyListFragment.OnLinkFragment"
-                )
-            }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mListener = if (context is OnLinkFragment) {
+            context as OnLinkFragment
+        } else {
+            throw ClassCastException(
+                context.toString()
+                        + " must implement MyListFragment.OnLinkFragment"
+            )
         }
+    }
+
     override fun onClick(p0: View?) {
 
         val db = MainDb.getDb(activity?.applicationContext!!)
@@ -69,23 +70,24 @@ class AccountAddFragment : Fragment, View.OnClickListener {
                         )
                         toast.show()
                     } else {
-                            val account = Account(
-                                null,
-                                etNewAcc?.text.toString()
-                                )
-                            Thread {
-                                db.getDao().insertAccount(account)
-                            }.start()
+                        val account = Account(
+                            null,
+                            etNewAcc?.text.toString()
+                        )
+                        Thread {
+                            db.getDao().insertAccount(account)
+                        }.start()
 
-                            var toast = Toast.makeText(
-                                activity?.applicationContext,
-                                "Счет успешно добавлен",
-                                Toast.LENGTH_SHORT
-                            )
-                            toast.show()
+                        var toast = Toast.makeText(
+                            activity?.applicationContext,
+                            "Счет успешно добавлен",
+                            Toast.LENGTH_SHORT
+                        )
+                        toast.show()
                     }
                     mListener?.onLinkFragment("Back")
                 }
+
                 else -> TODO("Not implementation click")
             }
         } else {

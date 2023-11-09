@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.example.familyfinance.R
 import com.example.familyfinance.models.Account
 
-class CustomAccountSpinnerAdapter (var context: Context, var accounts:List<Account>): BaseAdapter(){
+class CustomAccountSpinnerAdapter(var context: Context, var accounts: List<Account>) : BaseAdapter() {
 
     internal var inflter: LayoutInflater
 
@@ -34,7 +34,8 @@ class CustomAccountSpinnerAdapter (var context: Context, var accounts:List<Accou
         val viewHolder: ViewHolder
 
         if (convertView == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.support_simple_spinner_dropdown_item, parent, false)
+            view = LayoutInflater.from(context)
+                .inflate(R.layout.support_simple_spinner_dropdown_item, parent, false)
             viewHolder = ViewHolder(view)
             view.tag = viewHolder
         } else {
@@ -47,8 +48,7 @@ class CustomAccountSpinnerAdapter (var context: Context, var accounts:List<Accou
         return view
     }
 
-    private class ViewHolder(view:View) {
+    private class ViewHolder(view: View) {
         val textView: TextView = view.findViewById(R.id.textView)
     }
-
 }

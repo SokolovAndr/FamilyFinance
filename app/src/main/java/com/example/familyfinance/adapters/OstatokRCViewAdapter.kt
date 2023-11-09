@@ -8,14 +8,14 @@ import com.example.familyfinance.R
 import com.example.familyfinance.databinding.ListOstatokBinding
 import com.example.familyfinance.models.Ostatok
 
-class OstatokRCViewAdapter: RecyclerView.Adapter<OstatokRCViewAdapter.OstatokHolder>() {
+class OstatokRCViewAdapter : RecyclerView.Adapter<OstatokRCViewAdapter.OstatokHolder>() {
 
     val ostatokList = ArrayList<Ostatok>()
 
-    class OstatokHolder(item: View) : RecyclerView.ViewHolder(item){
+    class OstatokHolder(item: View) : RecyclerView.ViewHolder(item) {
 
         val binding = ListOstatokBinding.bind(item)
-        fun bind (ostatok: Ostatok) = with(binding){
+        fun bind(ostatok: Ostatok) = with(binding) {
             TextViewOstatok1.text = "Счет: " + ostatok.accName.toString()
             TextViewOstatok2.text = "Остаток: " + ostatok.totalSum.toString()
         }
@@ -43,7 +43,7 @@ class OstatokRCViewAdapter: RecyclerView.Adapter<OstatokRCViewAdapter.OstatokHol
         notifyDataSetChanged()
     }
 
-    fun clear(){
+    fun clear() {
         ostatokList.clear()
         notifyDataSetChanged()
     }

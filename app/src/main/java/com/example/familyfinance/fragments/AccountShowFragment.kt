@@ -17,11 +17,10 @@ import com.example.familyfinance.database.MainDb
 import com.example.familyfinance.models.Account
 
 
-
 private lateinit var adapter: AccountRCViewAdapter  //перемернная для записи адаптера
 private lateinit var rcview: RecyclerView  //перемернная для работы с rcview
 
-class AccountShowFragment : Fragment, View.OnClickListener{
+class AccountShowFragment : Fragment, View.OnClickListener {
 
     private var mListener: OnLinkFragment? = null
 

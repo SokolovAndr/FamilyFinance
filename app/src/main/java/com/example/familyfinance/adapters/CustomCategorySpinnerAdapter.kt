@@ -9,7 +9,8 @@ import android.widget.TextView
 import com.example.familyfinance.R
 import com.example.familyfinance.models.Category
 
-class CustomCategorySpinnerAdapter (var context: Context, var categories: List<Category>): BaseAdapter(){
+class CustomCategorySpinnerAdapter(var context: Context, var categories: List<Category>) :
+    BaseAdapter() {
 
 
     internal var inflter: LayoutInflater
@@ -51,5 +52,4 @@ class CustomCategorySpinnerAdapter (var context: Context, var categories: List<C
     private class ViewHolder(view: View) {
         val textView: TextView = view.findViewById(R.id.textView)
     }
-
 }

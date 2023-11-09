@@ -18,7 +18,6 @@ class CategoryRCViewAdapter : RecyclerView.Adapter<CategoryRCViewAdapter.Categor
             TextViewCategory1.text = "№ категории: " + category.id.toString()
             TextViewCategory2.text = "Наименование: " + category.name
             TextViewCategory3.text = "Доход: " + category.direction.toString()
-
         }
     }
 
@@ -40,5 +39,4 @@ class CategoryRCViewAdapter : RecyclerView.Adapter<CategoryRCViewAdapter.Categor
         categoryList.add(category)
         notifyDataSetChanged()
     }
-
 }
